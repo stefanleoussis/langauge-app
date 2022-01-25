@@ -11,4 +11,4 @@ A Language learning educational web app
 
 
 ### Developers:
- #### Stean Leoussis (https://www.linkedin.com/in/stefanleoussis/)
+ #### Stefan Leoussis (https://www.linkedin.com/in/stefanleoussis/)
