@@ -1,18 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useQuery,
-  gql,
-} from "@apollo/client";
+import { gql } from "@apollo/client";
 
 function App() {
-  const client = new ApolloClient({
-    uri: " http://localhost:4000/",
-    cache: new InMemoryCache(),
-  });
   const query = () => {
     client
       .query({
