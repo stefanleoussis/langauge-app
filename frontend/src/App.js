@@ -12,6 +12,7 @@ function App() {
   const [phrase, setPhrase] = useState("");
   const [ansKeyWord, setAnsKeyword] = useState("");
   const [options, setOptions] = useState([]);
+  const [outcome, setOutcome] = useState("");
   function generateValues() {
     // Generate Phrase
     let generateNum = Math.floor(Math.random() * (3 - 1 + 1));
@@ -39,8 +40,10 @@ function App() {
   function Gamify(option) {
     if (option === ansKeyWord) {
       console.log("correct");
+      setOutcome("Correct");
     } else {
       console.log("wrong");
+      setOutcome("Wrong");
     }
     generateValues();
   }
@@ -93,6 +96,9 @@ function App() {
         >
           {options[3]}
         </button>
+      </div>
+      <div>
+        <p>{outcome}</p>
       </div>
     </div>
   );
