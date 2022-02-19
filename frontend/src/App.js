@@ -1,14 +1,19 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-function App() {
-  const data = ["and", "the", "a", "with"];
+import { gql, useQuery } from "@apollo/client";
 
+const GET_PHRASE = gql`
+  query GetPhrase {
+    phrase
+  }
+`;
+function App() {
   const phrases = [
     "Nice to meet you.",
     "Where are you from?",
     "What do you do?",
   ];
-
+  const wordData = ["and", "the", "a", "with"];
   const [phrase, setPhrase] = useState("");
   const [ansKeyWord, setAnsKeyword] = useState("");
   const [options, setOptions] = useState([]);
@@ -29,9 +34,10 @@ function App() {
     setPhrase(questionPhraseSplit.join(" ").toString());
 
     // Options
-    let randomOptions = data;
+    let randomOptions = wordData;
     randomOptions.sort(() => Math.random() - 0.5);
-    randomOptions[Math.floor(Math.random() * (data.length - 1 + 1))] = ansWord;
+    randomOptions[Math.floor(Math.random() * (wordData.length - 1 + 1))] =
+      ansWord;
     setOptions(randomOptions);
   }
   useEffect(() => {
@@ -61,6 +67,10 @@ function App() {
   //     })
   //     .then((result) => console.log(result));
   // };
+  const { loading, error, data } = useQuery(GET_PHRASE);
+  if (loading) return "loading...";
+  if (error) return `Error! ${error.message}`;
+  console.log(data, "PHRASE Data");
 
   return (
     <div className="App">
